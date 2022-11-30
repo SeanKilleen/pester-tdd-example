@@ -3,7 +3,7 @@
 }
 
 Describe "Add-Numbers" {
-    It "Returns expected output" {
-        Add-Numbers | Should -Be "YOUR_EXPECTED_VALUE"
+    It "Returns zero when string is empty" {
+        Add-Numbers "" | Should -Be 0
     }
 }
