@@ -10,7 +10,7 @@
     if ($NumString -match "(//(.*)\`n)") {
         $FullStartingStringMatch = $Matches[1]
         $Match = $Matches[2]
-        Write-Host "Match: $Match"
+
         $DELIMITERS += $Match
 
         $NumString = $NumString -replace $FullStartingStringMatch, ""
@@ -24,16 +24,23 @@
         }
     }
 
+    [array]$numberArray = @()
     if ($containsDelimeters) {
         $array = $NumString -split { $DELIMITERS -contains $_ }
         $numberArray = foreach ($number in $array) {
             [int]$number
         }
-
-        return ($numberArray | Measure-Object -sum).Sum
     }
     else {
         $result = [int]$NumString
-        return $result
+        $numberArray = @($result)
     }
+
+    foreach ($possibleNegativeNumber in $numberArray) {
+        if ($possibleNegativeNumber -lt 0) {
+            throw "negatives not allowed; you attempted $possibleNegativeNumber"
+        }
+    }
+
+    return ($numberArray | Measure-Object -sum).Sum
 }
