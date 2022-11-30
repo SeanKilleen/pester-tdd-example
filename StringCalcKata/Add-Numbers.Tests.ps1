@@ -35,5 +35,8 @@ Describe "Add-Numbers" {
     It "Allows the changing of a delimiter via a special starting sequence" {
         Add-Numbers -NumString "//;`n1;2;3;4" | Should -Be 10
     }
+    It "Throws when a negative number is inputted" {
+        Add-Numbers -NumString "-1" | Should -Throw "negatives not allowed; you attempted -1"
+    }
 }
 
