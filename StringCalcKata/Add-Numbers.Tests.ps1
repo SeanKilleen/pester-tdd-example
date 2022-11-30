@@ -23,5 +23,13 @@ Describe "Add-Numbers" {
     ) {
         Add-Numbers -NumString $TheInput | Should -Be $Expected
     }
+    It "Can also use new-line delimeters" -Foreach @(
+        @{TheInput = "0`n1"; Expected = 1 }
+        @{TheInput = "1`n2"; Expected = 3 }
+        @{TheInput = "4`n6"; Expected = 10 }
+        @{TheInput = "1`n2`n3`n4"; Expected = 10 }
+    ) {
+        Add-Numbers -NumString $TheInput | Should -Be $Expected
+    }
 }
 

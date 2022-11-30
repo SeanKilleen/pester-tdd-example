@@ -5,16 +5,18 @@
         return 0
     }
 
-    if ($NumString -notmatch ",") {
-        $result = [int]$NumString
-        return $result
-    }
-    else {
-        $array = $NumString -split ","
+    $DELIMITERS = ",", "`n"
+
+    if ($NumString -like "*`n*" -or $NumString -like "*,*") {
+        $array = $NumString -split { $DELIMITERS -contains $_ }
         $numberArray = foreach ($number in $array) {
             [int]$number
         }
 
         return ($numberArray | Measure-Object -sum).Sum
+    }
+    else {
+        $result = [int]$NumString
+        return $result
     }
 }
