@@ -14,5 +14,13 @@ Describe "Add-Numbers" {
     ) {
         Add-Numbers -NumString $TheInput | Should -Be $Expected
     }
+
+    It "Returns a sum of <Expected> when receiving two-number inputs of <TheInput>" -Foreach @(
+        @{TheInput = "0,1"; Expected = 1 }
+        @{TheInput = "1,2"; Expected = 3 }
+        @{TheInput = "4,6"; Expected = 10 }
+    ) {
+        Add-Numbers -NumString $TheInput | Should -Be $Expected
+    }
 }
 
