@@ -5,6 +5,16 @@
         return 0
     }
 
-    $result = [int]$NumString
-    return $result
+    if ($NumString -notmatch ",") {
+        $result = [int]$NumString
+        return $result
+    }
+    else {
+        $array = $NumString -split ","
+        $numberArray = foreach ($number in $array) {
+            [int]$number
+        }
+
+        return ($numberArray | Measure-Object -sum).Sum
+    }
 }
