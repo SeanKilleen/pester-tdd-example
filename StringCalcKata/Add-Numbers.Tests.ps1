@@ -19,6 +19,7 @@ Describe "Add-Numbers" {
         @{TheInput = "0,1"; Expected = 1 }
         @{TheInput = "1,2"; Expected = 3 }
         @{TheInput = "4,6"; Expected = 10 }
+        @{TheInput = "1,2,3,4"; Expected = 10 }
     ) {
         Add-Numbers -NumString $TheInput | Should -Be $Expected
     }
