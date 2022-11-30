@@ -31,5 +31,9 @@ Describe "Add-Numbers" {
     ) {
         Add-Numbers -NumString $TheInput | Should -Be $Expected
     }
+
+    It "Allows the changing of a delimiter via a special starting sequence" {
+        Add-Numbers -NumString "//;`n1;2;3;4" | Should -Be 10
+    }
 }
 
