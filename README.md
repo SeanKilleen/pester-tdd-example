@@ -1,6 +1,6 @@
 # pester-tdd-example
 
-A quick example of TDD using pester. The commits to the main branch are done as small commits where we write a failing test and then the code to pass it.
+A quick example of TDD using pester. The [commits to the main branch](https://github.com/SeanKilleen/pester-tdd-example/commits/main) are done as small commits where we write a failing test and then the code to pass it.
 
 For this exercise, implemented some of the [String Calculator Kata](https://osherove.com/tdd-kata-1)
 
