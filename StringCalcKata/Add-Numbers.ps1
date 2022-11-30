@@ -5,9 +5,26 @@
         return 0
     }
 
-    $DELIMITERS = ",", "`n"
+    [array]$DELIMITERS = ",", "`n"
 
-    if ($NumString -like "*`n*" -or $NumString -like "*,*") {
+    if ($NumString -match "(//(.*)\`n)") {
+        $FullStartingStringMatch = $Matches[1]
+        $Match = $Matches[2]
+        Write-Host "Match: $Match"
+        $DELIMITERS += $Match
+
+        $NumString = $NumString -replace $FullStartingStringMatch, ""
+    }
+
+    $containsDelimeters = $false
+
+    foreach ($searchTerm in $DELIMITERS) {
+        if ($NumString -like "*$($searchTerm)*") {
+            $containsDelimeters = $true
+        }
+    }
+
+    if ($containsDelimeters) {
         $array = $NumString -split { $DELIMITERS -contains $_ }
         $numberArray = foreach ($number in $array) {
             [int]$number
