@@ -1,3 +1,10 @@
 ﻿function Add-Numbers {
-    return 0
+    param($NumString)
+
+    if ($NumString -eq "") {
+        return 0
+    }
+
+    $result = [int]$NumString
+    return $result
 }
